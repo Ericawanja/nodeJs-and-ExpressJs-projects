@@ -10,7 +10,7 @@ require('dotenv').config();
 app.use(express.json())
 
 const PORT = 5000;
-//const connection_string =
+
 
 app.use('/api/v1/tasks', tasks)
 const start = async()=>{

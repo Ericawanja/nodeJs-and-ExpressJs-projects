@@ -1,3 +1,5 @@
+const Task = require('../models/task_models')
+
 const getAllTasks = (req, res) => {
   res.send("From the controllers running");
 };
