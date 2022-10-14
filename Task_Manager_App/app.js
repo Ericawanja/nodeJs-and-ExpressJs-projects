@@ -11,6 +11,8 @@ app.use(express.json())
 
 const PORT = 5000;
 
+const connection_string='mongodb+srv://EricaDB:EricaDB@cluster0.8xcwuux.mongodb.net/TASKS?retryWrites=true&w=majority'
+
 
 app.use('/api/v1/tasks', tasks)
 const start = async()=>{
