@@ -17,7 +17,7 @@ const connection_string='mongodb+srv://EricaDB:EricaDB@cluster0.8xcwuux.mongodb.
 app.use('/api/v1/tasks', tasks)
 const start = async()=>{
     try{
-        console.log(process.env.MONGO_URI ? true:false)
+        //console.log(process.env.MONGO_URI ? true:false)
         await connectDB(process.env.MONGO_URI || connection_string);
         app.listen(PORT, console.log('App is running'))
     }catch(error){
