@@ -1,0 +1,25 @@
+
+GET http://localhost:5000/todos
+
+###
+POST http://localhost:5000/todos
+Content-Type: "application/json"
+
+{
+    "title": "code",
+    "description": "code today",
+    "date":"2022-06-02"
+}
+
+###
+PUT  http://localhost:5000/todos/5fdaa719-016f-4f5b-8eff-8de8f4630e49
+Content-Type: "application/json"
+
+{
+    "title": "code",
+    "description": "code today",
+    "date":"2022-06-02"
+}
+
+###
+DELETE http://localhost:5000/todos/34759ccf-3576-4574-9fb7-f63e0a7dff93
