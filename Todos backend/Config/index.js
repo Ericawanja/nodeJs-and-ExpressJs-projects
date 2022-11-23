@@ -1,5 +1,6 @@
 const sql = require('mssql')
 require('dotenv').config()
+ console.log(process.env.DB_USER);
 const sqlConfig = {
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
@@ -12,17 +13,15 @@ const sqlConfig = {
   },
   options: {
     encrypt: false, // for azure
-    trustServerCertificate: false // change to true for local dev / self-signed certs
+    trustServerCertificate: true // change to true for local dev / self-signed certs
   }
 }
 
-async () => {
- try {
-  // make sure that any items are correctly URL encoded in the connection string
-  await sql.connect(sqlConfig)
 
-  console.dir(`database connected`)
- } catch (err) {
-  // ... error checks
- }
-}
+sql.connect(sqlConfig).then(pool=>{
+  if(pool.connected){
+    console.log('connected.....')
+  }
+}).catch(e=>console.log(e))
+
+module.exports = sqlConfig

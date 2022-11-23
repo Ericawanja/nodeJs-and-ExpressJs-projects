@@ -1,0 +1,6 @@
+CREATE PROCEDURE getTodos
+AS
+BEGIN
+SELECT * FROM todosTable
+END
+--EXEC getTodos
