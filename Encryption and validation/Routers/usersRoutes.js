@@ -6,7 +6,7 @@ const userRoutes = express.Router()
 
 const {signup, login, getUsers} = require('../Controllers/userControllers')
 userRoutes.get('/', getUsers)
-userRoutes.get('/login', login)
+userRoutes.post('/login', login)
 userRoutes.post('/signup', signup)
 
 module.exports = userRoutes;
