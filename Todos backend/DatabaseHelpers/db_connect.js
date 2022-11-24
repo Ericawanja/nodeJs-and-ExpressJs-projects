@@ -17,7 +17,7 @@ class Connection {
   createRequestObj = (request, data) => {
     let KeyNames = Object.keys(data);
     KeyNames.map((name) => {
-      Value = data[name];
+      let value = data[name];
       request.input(name, value);
     });
     return request;
