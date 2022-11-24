@@ -3,7 +3,7 @@ const { encrypt, comparePwd } = require("../helpers/encryption");
 const db_users = [
   {
     name: "Erica wanja",
-    password: "$2b$08$/o3xSQ21zIJSp/e/BUh0BeKzR8HW1JL4ROjtdzFRUJLaC1sqVGBZu",
+    password: "get the pwd",
   },
 ];
 

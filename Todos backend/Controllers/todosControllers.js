@@ -1,13 +1,14 @@
 const mssql = require("mssql");
 const { v4 } = require("uuid");
 const sqlConfig = require("../Config/index");
+const {exec, query} = require("../DatabaseHelpers/db_connect")
 
 const getTodos = async (req, res) => {
   try {
-    const pool = await mssql.connect(sqlConfig);
-    const response = await pool.request().execute("getTodos");
+ 
+    const response = await exec('getTodos')
     const todos = await response.recordset;
-    console.log(todos);
+    //console.log(todos);
     if (todos.length === 0) {
       return res.status(404).send("No todos available");
     }
