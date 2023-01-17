@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import List from './components/List';
+import WithLoading from './components/WithLoading';
+
+
+const ListWithLoading = WithLoading(List)
 
 export class App extends Component {
   state = {}

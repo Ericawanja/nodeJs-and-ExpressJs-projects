@@ -1,8 +1,8 @@
 import React from 'react';
 
-function WithLoading(component) {
+function WithLoading(OriginalComponent) {
     return function WithLoadingComponent({ isLoading, ...props }) {
-        if (!isLoading) return <component {...props} />
+        if (!isLoading) return <OriginalComponent {...props} />
         return <p>Hold on, fetching data might take some time</p>
     }
 }
