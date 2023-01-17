@@ -17,27 +17,40 @@ function App() {
     isTouched: false,
   });
   const [role, setRole] = useState("role");
-  const [ pwdAlert, setPwdAlert] = useState(false)
+  const [pwdAlert, setPwdAlert] = useState(false)
 
   const handlePwd = (e) => {
     setPassword({ ...password, value: e.target.value, isTouched: true })
-    let pwd= e.target.value.length
-    if(pwd< 8 && pwd>1){
-     
+    let pwd = e.target.value.length
+    if (pwd < 8 && pwd > 1) {
+
       setPwdAlert(true)
-    }else{
-    
+    } else {
+
       setPwdAlert(false)
     }
   }
 
   const getIsFormValid = () => {
+
     // Implement this function
-    return true;
+    if (firstName.trim().length === 0) return false 
+    if (lastName.trim().length === 0)  return false 
+    if (email.trim().length === 0 || validateEmail(email)) return false 
+    if (password.value.trim().length === 0) return false 
+    if ((role != 'individual' && role != 'business')) return false 
+
+    return true
+
+
   };
 
   const clearForm = () => {
-    // Implement this function
+    setFirstName("")
+    setLastName("")
+    setEmail("")
+    setRole("")
+    setPassword({ value: "", isTouched: false })
   };
 
   const handleSubmit = (e) => {
@@ -72,7 +85,7 @@ function App() {
               Password <sup>*</sup>
             </label>
             <input placeholder="Password" value={password.value} onChange={handlePwd} />
-            {pwdAlert && <PasswordErrorMessage/>}
+            {pwdAlert && <PasswordErrorMessage />}
           </div>
           <div className="Field">
             <label>
