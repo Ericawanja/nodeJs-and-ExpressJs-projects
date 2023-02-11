@@ -27,6 +27,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const app = (0, express_1.default)();
 app.use((0, express_1.json)());
+const todos = [];
+app.get("/todos", (req, res) => {
+    res.status(200).json(todos);
+});
+app.post("/todos", (req, res) => {
+    const { title, description } = req.body;
+    todos.push({ title, description, id: Math.floor(Math.random() * 1000) });
+    return res.status(201).json({ message: "Todo added successfully" });
+});
+app.get("/todos/:id", (req, res) => {
+    console.log("getting one");
+    if (todos.length === 0) {
+        return res.status(404).json({ message: "Todo is not found" });
+    }
+    const id = +req.params.id;
+    const todo = todos.filter((t) => t.id === id);
+    if (todo.length === 0) {
+        return res.status(404).json({ message: "Todo is not found" });
+    }
+    return res.status(200).json(todo);
+});
+app.put("/todos/:id", (req, res) => {
+    const id = +req.params.id;
+    const index = todos.findIndex((x) => x.id === id);
+    if (index < 0) {
+        return res.status(404).json({ message: "todo not found" });
+    }
+    const { title, description } = req.body;
+    todos[index] = Object.assign(Object.assign({}, todos[index]), { title, description });
+    return res.status(200).json({ message: "todo is updated" });
+});
+app.delete("/todos/:id", (req, res) => {
+    const id = +req.params.id;
+    const index = todos.findIndex((x) => x.id === id);
+    if (index < 0) {
+        return res.status(404).json({ message: "todo not found" });
+    }
+    todos.splice(index, 1);
+    return res.status(200).json({ message: "todo is deleted" });
+});
 app.listen(4000, () => {
     console.log("App is running");
 });
